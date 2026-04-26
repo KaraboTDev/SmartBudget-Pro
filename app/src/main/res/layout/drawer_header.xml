@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:background="@color/blue_primary"
+    android:orientation="vertical"
+    android:gravity="bottom"
+    android:padding="24dp">
+
+    <!-- Avatar circle -->
+    <TextView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:text="👤"
+        android:textSize="32sp"
+        android:gravity="center"
+        android:background="@color/blue_dark"
+        android:layout_marginBottom="12dp"/>
+
+    <!-- Username -->
+    <TextView
+        android:id="@+id/tvDrawerUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"/>
+
+    <!-- Subtitle -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SmartBudget Pro"
+        android:textSize="13sp"
+        android:textColor="#B3FFFFFF"
+        android:layout_marginTop="2dp"/>
+
+</LinearLayout>

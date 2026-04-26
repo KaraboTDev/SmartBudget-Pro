@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/drawer_add_account"
+            android:icon="@android:drawable/ic_menu_add"
+            android:title="Add Account"/>
+
+        <item
+            android:id="@+id/drawer_goals"
+            android:icon="@android:drawable/ic_menu_agenda"
+            android:title="Monthly Goals"/>
+
+        <item
+            android:id="@+id/drawer_settings"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="Settings"/>
+
+        <item
+            android:id="@+id/drawer_logout"
+            android:icon="@android:drawable/ic_lock_power_off"
+            android:title="Logout"/>
+
+    </group>
+
+</menu>

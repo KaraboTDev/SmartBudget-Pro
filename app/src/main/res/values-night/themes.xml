@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark mode backgrounds -->
+    <color name="off_white">#121212</color>
+    <color name="surface">#1E1E1E</color>
+    <color name="white">#1E1E1E</color>
+
+    <!-- Keep blue but slightly lighter so it pops on dark bg -->
+    <color name="blue_primary">#1E88E5</color>
+    <color name="blue_light">#42A5F5</color>
+    <color name="blue_dark">#0D47A1</color>
+
+    <!-- Keep green -->
+    <color name="green_primary">#43A047</color>
+    <color name="green_light">#66BB6A</color>
+    <color name="green_dark">#1B5E20</color>
+
+    <!-- Dark mode text -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B0BEC5</color>
+
+    <!-- Status bar -->
+    <color name="status_bar">#0D47A1</color>
+</resources>
