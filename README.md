@@ -56,5 +56,5 @@ MVVM (Model-View-ViewModel)
 ##  Downloads & Resources
 
 - **GitHub Repository** — [https://github.com/KaraboTDev/SmartBudget-Pro](https://github.com/KaraboTDev/SmartBudget-Pro)
-- **APK Download** — [smartbudget-pro-v1.0.apk](https://github.com/KaraboTDev/SmartBudget-Pro/releases/download/v1.0/smartbudget-pro-v1.0.apk)
+- 
 - **Demo Video** — [https://youtube.com/shorts/-Mg3bxlpSEI?si=EJ2KGQnnSxZjuTVg](https://youtube.com/shorts/-Mg3bxlpSEI?si=EJ2KGQnnSxZjuTVg)
