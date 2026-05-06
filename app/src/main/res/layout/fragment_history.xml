@@ -44,7 +44,7 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="8dp"
         android:hint="Search by name, category or date"
-        app:startIconDrawable="@android:drawable/ic_menu_search"
+        app:startIconDrawable="@drawable/ic_history"
         app:boxStrokeColor="@color/blue_primary"
         app:hintTextColor="@color/blue_primary">
 
