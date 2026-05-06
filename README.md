@@ -1,6 +1,6 @@
 # SmartBudget Pro
 
-A personal finance Android app built with Kotlin for my final year project.
+A personal finance Android app built with Kotlin 
 
 ##  Features
 
