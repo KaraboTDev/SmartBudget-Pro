@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 
-@Database(entities = [Expense::class, User::class], version = 3, exportSchema = false)
+@Database(entities = [Expense::class, User::class], version = 4, exportSchema = false)
 abstract class AppDatabase: RoomDatabase() {
     //allows you to access the database from anywhere in your app without having to create a new version of it every time.
 

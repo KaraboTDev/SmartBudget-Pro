@@ -83,12 +83,12 @@
                     android:gravity="center_vertical"
                     android:paddingHorizontal="20dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🌙"
-                        android:textSize="20sp"
-                        android:layout_marginEnd="16dp"/>
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_dark_mode"
+                        android:layout_marginEnd="16dp"
+                        app:tint="@color/blue_primary"/>
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -137,12 +137,13 @@
                     android:gravity="center_vertical"
                     android:paddingHorizontal="20dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🔔"
-                        android:textSize="20sp"
-                        android:layout_marginEnd="16dp"/>
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_notifications"
+                        android:layout_marginEnd="16dp"
+                        app:tint="@color/blue_primary"/>
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -217,12 +218,12 @@
                     android:clickable="true"
                     android:focusable="true">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="ℹ️"
-                        android:textSize="20sp"
-                        android:layout_marginEnd="16dp"/>
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_about"
+                        android:layout_marginEnd="16dp"
+                        app:tint="@color/blue_primary"/>
 
                     <TextView
                         android:layout_width="0dp"
@@ -261,12 +262,13 @@
                     android:clickable="true"
                     android:focusable="true">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🔒"
-                        android:textSize="20sp"
-                        android:layout_marginEnd="16dp"/>
+                    <!-- Privacy row -->
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_privacy"
+                        android:layout_marginEnd="16dp"
+                        app:tint="@color/blue_primary"/>
 
                     <TextView
                         android:layout_width="0dp"

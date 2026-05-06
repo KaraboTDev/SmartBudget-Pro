@@ -5,22 +5,22 @@
 
         <item
             android:id="@+id/drawer_add_account"
-            android:icon="@android:drawable/ic_menu_add"
+            android:icon="@drawable/ic_account"
             android:title="Add Account"/>
 
         <item
             android:id="@+id/drawer_goals"
-            android:icon="@android:drawable/ic_menu_agenda"
+            android:icon="@drawable/ic_goals"
             android:title="Monthly Goals"/>
 
         <item
             android:id="@+id/drawer_settings"
-            android:icon="@android:drawable/ic_menu_manage"
+            android:icon="@drawable/ic_settings"
             android:title="Settings"/>
 
         <item
             android:id="@+id/drawer_logout"
-            android:icon="@android:drawable/ic_lock_power_off"
+            android:icon="@drawable/ic_logout"
             android:title="Logout"/>
 
     </group>

@@ -52,6 +52,7 @@ class LoginActivity : AppCompatActivity() {
                 //After a successful login, save the username to GoalManager so goals are linked to the right account
                 val goalManager = GoalManager(this)
                 goalManager.currentUser = user.username
+                goalManager.currentUserId = user.id
                 goalManager.addAccount(user.username)
                 // Login successful - go to main app
                 startActivity(Intent(this, MainActivity::class.java))

@@ -12,6 +12,11 @@ class GoalManager(context: Context) {
         get() = prefs.getString("current_user", "default") ?: "default"
         set(value) = prefs.edit().putString("current_user", value).apply()
 
+    // Store currently logged in user ID for database filtering
+    var currentUserId: Int
+        get() = prefs.getInt("current_user_id", -1)
+        set(value) = prefs.edit().putInt("current_user_id", value).apply()
+
     //This code creates a "Smart Variable" that automatically saves itself to your phone's memory every time you change it.
     //This is a shortcut that lets you treat a saved setting like a normal variable, automatically handling the reading and writing to the phone's storage for you.
     // Goals are keyed by username
@@ -38,6 +43,6 @@ class GoalManager(context: Context) {
     }
 
     fun logout() {
-        prefs.edit().remove("current_user").apply()
+        prefs.edit().remove("current_user").remove("current_user_id").apply()
     }
 }

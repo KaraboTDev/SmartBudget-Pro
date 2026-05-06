@@ -74,6 +74,7 @@ class RegisterActivity : AppCompatActivity() {
 
                 val goalManager = GoalManager(this)
                 goalManager.currentUser = user.username
+                goalManager.currentUserId = user.id
                 goalManager.addAccount(user.username)
                 startActivity(Intent(this, MainActivity::class.java))
                 finishAffinity() // clears both Register and Login from back stack
