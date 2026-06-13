@@ -38,6 +38,12 @@ class ExpenseRepository(context: Context) {
     fun getByCategory(username: String, category: String) =
         expenseDao.getExpensesByCategory(username, category)
 
+    fun getByDateRange(username: String, startDate: Long, endDate: Long) =
+        expenseDao.getExpensesByDateRange(username, startDate, endDate)
+
+    fun getByCategoryAndDateRange(username: String, category: String, startDate: Long, endDate: Long) =
+        expenseDao.getExpensesByCategoryAndDateRange(username, category, startDate, endDate)
+
     fun searchExpenses(username: String, query: String) =
         expenseDao.searchExpenses(username, query)
 }

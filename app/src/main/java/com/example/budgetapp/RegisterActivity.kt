@@ -2,6 +2,7 @@ package com.example.budgetapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -20,7 +21,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var etPassword: TextInputEditText
     private lateinit var etConfirmPassword: TextInputEditText
     private lateinit var btnRegister: MaterialButton
-    private lateinit var btnBackToLogin: MaterialButton
+    private lateinit var tvBackToLogin: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +35,7 @@ class RegisterActivity : AppCompatActivity() {
         etPassword = findViewById(R.id.etRegPassword)
         etConfirmPassword = findViewById(R.id.etRegConfirmPassword)
         btnRegister = findViewById(R.id.btnRegister)
-        btnBackToLogin = findViewById(R.id.btnBackToLogin)
+        tvBackToLogin = findViewById(R.id.tvBackToLogin)
 
         btnRegister.setOnClickListener {
             if (validateInputs()) {
@@ -45,7 +46,7 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
 
-        btnBackToLogin.setOnClickListener {
+        tvBackToLogin.setOnClickListener {
             finish() // goes back to LoginActivity
         }
 

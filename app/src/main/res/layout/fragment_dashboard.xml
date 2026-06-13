@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@color/blue_primary"
+            android:background="@color/ink"
             android:paddingHorizontal="20dp"
             android:paddingTop="24dp"
             android:paddingBottom="32dp">
@@ -25,27 +25,39 @@
                 android:id="@+id/tvGreeting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Good morning 👋"
-                android:textSize="14sp"
-                android:textColor="#B3FFFFFF"/>
+                android:text="Good morning"
+                android:textSize="13sp"
+                android:textColor="#94A3B8"/>
 
             <TextView
                 android:id="@+id/tvUsername"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Username"
-                android:textSize="26sp"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:layout_marginTop="4dp"/>
+                android:textSize="22sp"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@color/card_white"
+                android:layout_marginTop="2dp"/>
 
             <TextView
+                android:id="@+id/tvLevelBadge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Here's your spending overview"
-                android:textSize="13sp"
-                android:textColor="#B3FFFFFF"
-                android:layout_marginTop="4dp"/>
+                android:text="Level 1 — Budget Beginner"
+                android:textSize="12sp"
+                android:textColor="#94A3B8"
+                android:layout_marginTop="6dp"/>
+
+            <ProgressBar
+                android:id="@+id/progressDashboardXP"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:max="100"
+                android:progress="0"
+                android:progressTint="@color/card_white"
+                android:progressBackgroundTint="#334155"
+                android:layout_marginTop="8dp"/>
 
         </LinearLayout>
 
@@ -100,15 +112,14 @@
 
                 </LinearLayout>
 
-                <!-- Spending emoji indicator -->
-                <TextView
-                    android:id="@+id/tvSpendingEmoji"
-                    android:layout_width="56dp"
-                    android:layout_height="56dp"
-                    android:text="💰"
-                    android:textSize="28sp"
-                    android:gravity="center"
-                    android:background="@color/off_white"/>
+                <ImageView
+                    android:id="@+id/ivSpendingIcon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="9dp"
+                    android:background="@drawable/icon_bg_neutral"
+                    android:src="@drawable/ic_check"
+                    app:tint="@color/text_secondary"/>
 
             </LinearLayout>
 
@@ -142,7 +153,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="🎯  Monthly Goals"
+                        android:text="  Monthly Goals"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="@color/text_primary"/>
@@ -170,6 +181,78 @@
                     android:progress="0"
                     android:progressTint="@color/green_primary"
                     android:layout_marginBottom="8dp"/>
+
+                <!-- ── Goal countdown card ── -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardCountdown"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:visibility="gone"
+                    app:cardBackgroundColor="@color/card_white"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="@color/border_subtle"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="18dp"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:padding="10dp"
+                            android:background="@drawable/icon_bg_neutral"
+                            android:src="@drawable/ic_calendar"
+                            app:tint="@color/text_secondary"/>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="12dp">
+
+                            <TextView
+                                android:id="@+id/tvCountdownDays"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0 days left"
+                                android:textSize="16sp"
+                                android:fontFamily="sans-serif-medium"
+                                android:textColor="@color/text_primary"/>
+
+                            <TextView
+                                android:id="@+id/tvCountdownLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="To reach your goal by 30 Jun"
+                                android:textSize="12sp"
+                                android:textColor="@color/text_secondary"
+                                android:layout_marginTop="2dp"/>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tvCountdownBadge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="On track"
+                            android:textSize="11sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textColor="@color/text_secondary"
+                            android:background="@drawable/badge_background"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="4dp"/>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
 
                 <!-- Min / Max labels -->
                 <LinearLayout
@@ -257,11 +340,7 @@
                 android:gravity="center_horizontal"
                 android:padding="32dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="💸"
-                    android:textSize="48sp"/>
+
 
                 <TextView
                     android:layout_width="wrap_content"

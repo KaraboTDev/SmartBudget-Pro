@@ -14,6 +14,11 @@
             android:title="Monthly Goals"/>
 
         <item
+            android:id="@+id/drawer_manage_categories"
+            android:icon="@drawable/ic_summary"
+            android:title="Manage Categories"/>
+
+        <item
             android:id="@+id/drawer_settings"
             android:icon="@drawable/ic_settings"
             android:title="Settings"/>
@@ -22,6 +27,11 @@
             android:id="@+id/drawer_logout"
             android:icon="@drawable/ic_logout"
             android:title="Logout"/>
+
+        <item
+            android:id="@+id/drawer_achievements"
+            android:icon="@drawable/ic_check"
+            android:title="Achievements"/>
 
     </group>
 

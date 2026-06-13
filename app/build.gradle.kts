@@ -34,6 +34,8 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+
 }
 
 dependencies {
@@ -41,6 +43,7 @@ dependencies {
 
     implementation("androidx.room:room-runtime:$room_version")
     ksp("androidx.room:room-compiler:$room_version")
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

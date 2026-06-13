@@ -1,6 +1,7 @@
 package com.example.budgetapp
 
 import android.content.Context
+import java.util.concurrent.TimeUnit
 
 class GoalManager(context: Context) {
 
@@ -34,7 +35,7 @@ class GoalManager(context: Context) {
     fun getSavedAccounts(): MutableList<String> {
         val accounts = prefs.getStringSet("all_accounts", mutableSetOf()) ?: mutableSetOf()
         return accounts.toMutableList()
-}
+    }
 
     fun addAccount(username: String) {
         val accounts = getSavedAccounts().toMutableSet()
@@ -44,5 +45,45 @@ class GoalManager(context: Context) {
 
     fun logout() {
         prefs.edit().remove("current_user").remove("current_user_id").apply()
+    }
+
+
+
+    var goalTargetDate: Long
+        get() = prefs.getLong("goal_target_date_$currentUser", 0L)
+        set(value) = prefs.edit().putLong("goal_target_date_$currentUser", value).apply()
+
+    fun hasTargetDate(): Boolean = goalTargetDate > System.currentTimeMillis()
+
+    // Returns days remaining, or -1 if no valid target date set
+    fun daysRemaining(): Int {
+        if (!hasTargetDate()) return -1
+        val diff = goalTargetDate - System.currentTimeMillis()
+        return TimeUnit.MILLISECONDS.toDays(diff).toInt() + 1 // +1 so "today" counts as day 1
+    }
+
+    // --- Custom Categories ---
+    private val defaultCategories = setOf("Food", "Transport", "Entertainment", "Shopping", "Health", "Education", "Other")
+
+    fun getCustomCategories(): MutableList<String> {
+        val key = "custom_categories_$currentUser"
+        val categories = prefs.getStringSet(key, defaultCategories) ?: defaultCategories
+        return categories.toMutableList().sorted().toMutableList()
+    }
+
+    fun addCategory(category: String) {
+        val key = "custom_categories_$currentUser"
+        val categories = getCustomCategories().toMutableSet()
+        categories.add(category)
+        prefs.edit().putStringSet(key, categories).apply()
+    }
+
+    fun removeCategory(category: String) {
+        val key = "custom_categories_$currentUser"
+        val categories = getCustomCategories().toMutableSet()
+        if (categories.size > 1) { // Keep at least one category
+            categories.remove(category)
+            prefs.edit().putStringSet(key, categories).apply()
+        }
     }
 }

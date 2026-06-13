@@ -14,10 +14,14 @@ import androidx.core.view.GravityCompat
 import androidx.core.view.forEach
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import com.example.budgetapp.bills.AddBillBottomSheet
+import com.example.budgetapp.bills.BillsFragment
+import com.example.budgetapp.ui.AchievementsFragment
 import com.example.budgetapp.ui.AddExpenseFragment
 import com.example.budgetapp.ui.DashboardFragment
 import com.example.budgetapp.ui.GoalsFragment
 import com.example.budgetapp.ui.HistoryFragment
+import com.example.budgetapp.ui.ManageCategoriesFragment
 import com.example.budgetapp.ui.SettingsFragment
 import com.example.budgetapp.ui.SummaryFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -93,6 +97,19 @@ class MainActivity : AppCompatActivity() {
                         bottomNav.menu.setGroupCheckable(0, true, false)
                         bottomNav.menu.forEach { it.isChecked = false }
                         bottomNav.menu.setGroupCheckable(0, true, true)
+                        fab.setImageResource(R.drawable.ic_add)
+                        fab.show()
+                    }, 250)
+                    true
+                }
+
+                R.id.drawer_manage_categories -> {
+                    drawerLayout.postDelayed({
+                        loadFragment(ManageCategoriesFragment(), "Manage Categories")
+                        bottomNav.menu.setGroupCheckable(0, true, false)
+                        bottomNav.menu.forEach { it.isChecked = false }
+                        bottomNav.menu.setGroupCheckable(0, true, true)
+                        fab.setImageResource(R.drawable.ic_add)
                         fab.show()
                     }, 250)
                     true
@@ -104,8 +121,18 @@ class MainActivity : AppCompatActivity() {
                         bottomNav.menu.setGroupCheckable(0, true, false)
                         bottomNav.menu.forEach { it.isChecked = false }
                         bottomNav.menu.setGroupCheckable(0, true, true)
+                        fab.setImageResource(R.drawable.ic_add)
                         fab.show()
                     }, 250)
+                    true
+                }
+
+                R.id.nav_bills -> {
+                    loadFragment(BillsFragment(), "Bill Reminders")
+                    bottomNav.selectedItemId = R.id.nav_bills
+                    // Change FAB to add bill when on bills screen
+                    fab.setImageResource(R.drawable.ic_notifications)
+                    fab.show()
                     true
                 }
 
@@ -128,6 +155,15 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
 
+                R.id.drawer_achievements -> {
+                    drawerLayout.postDelayed({
+                        loadFragment(AchievementsFragment(), "Achievements")
+                        fab.setImageResource(R.drawable.ic_add)
+                        fab.show()
+                    }, 250)
+                    true
+                }
+
                 else -> false
             }
         }
@@ -137,6 +173,7 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.nav_home -> {
                     loadFragment(DashboardFragment(), "SmartBudget Pro")
+                    fab.setImageResource(R.drawable.ic_add)
                     fab.show()
                     true
                 }
@@ -147,11 +184,19 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.nav_history -> {
                     loadFragment(HistoryFragment(), "SmartBudget Pro")
+                    fab.setImageResource(R.drawable.ic_add)
                     fab.show()
                     true
                 }
                 R.id.nav_summary -> {
                     loadFragment(SummaryFragment(), "SmartBudget Pro")
+                    fab.setImageResource(R.drawable.ic_add)
+                    fab.show()
+                    true
+                }
+                R.id.nav_bills -> {
+                    loadFragment(BillsFragment(), "Bill Reminders")
+                    fab.setImageResource(R.drawable.ic_notifications)
                     fab.show()
                     true
                 }
@@ -159,16 +204,23 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-// Update FAB click
         fab.setOnClickListener {
-            loadFragment(AddExpenseFragment(), "SmartBudget Pro")
-            bottomNav.selectedItemId = R.id.nav_add
+            val currentFragment = supportFragmentManager
+                .findFragmentById(R.id.fragment_container)
+            if (currentFragment is BillsFragment) {
+                // Open add bill bottom sheet
+                AddBillBottomSheet().show(supportFragmentManager, "AddBill")
+            } else {
+                loadFragment(AddExpenseFragment(), "Add Expense")
+                bottomNav.selectedItemId = R.id.nav_add
+            }
         }
 
 // Update default screen — Dashboard loads first now
         if (savedInstanceState == null) {
             loadFragment(DashboardFragment(), "SmartBudget Pro")
             bottomNav.selectedItemId = R.id.nav_home
+            fab.setImageResource(R.drawable.ic_add)
             fab.show()
         }
 
@@ -201,9 +253,18 @@ class MainActivity : AppCompatActivity() {
             R.id.nav_add     -> AddExpenseFragment()
             R.id.nav_history -> HistoryFragment()
             R.id.nav_summary -> SummaryFragment()
+            R.id.nav_bills   -> BillsFragment()
             else             -> DashboardFragment()
         }
         loadFragment(fragment, title)
-        if (navItemId == R.id.nav_add) fab.hide() else fab.show()
+        if (navItemId == R.id.nav_add) {
+            fab.hide()
+        } else if (navItemId == R.id.nav_bills) {
+            fab.setImageResource(R.drawable.ic_notifications)
+            fab.show()
+        } else {
+            fab.setImageResource(R.drawable.ic_add)
+            fab.show()
+        }
     }
 }

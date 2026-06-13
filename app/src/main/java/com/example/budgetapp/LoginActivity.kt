@@ -2,6 +2,7 @@ package com.example.budgetapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.budgetapp.viewmodel.AuthViewModel
@@ -17,7 +18,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var etUsername: TextInputEditText
     private lateinit var etPassword: TextInputEditText
     private lateinit var btnLogin: MaterialButton
-    private lateinit var btnGoToRegister: MaterialButton
+    private lateinit var tvGoToRegister: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +30,7 @@ class LoginActivity : AppCompatActivity() {
         etUsername = findViewById(R.id.etUsername)
         etPassword = findViewById(R.id.etPassword)
         btnLogin = findViewById(R.id.btnLogin)
-        btnGoToRegister = findViewById(R.id.btnGoToRegister)
+        tvGoToRegister = findViewById(R.id.tvGoToRegister)
 
         btnLogin.setOnClickListener {
             if (validateInputs()) {
@@ -40,7 +41,7 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        btnGoToRegister.setOnClickListener {
+        tvGoToRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
 

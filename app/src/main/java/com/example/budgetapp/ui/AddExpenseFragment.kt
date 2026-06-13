@@ -20,7 +20,9 @@ import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import coil.load
+import com.example.budgetapp.AchievementManager
 import com.example.budgetapp.Data.Expense
+import com.example.budgetapp.GoalManager
 import com.example.budgetapp.R
 import com.example.budgetapp.viewmodel.ExpenseViewModel
 import com.google.android.material.button.MaterialButton
@@ -36,6 +38,7 @@ import java.util.Locale
 class AddExpenseFragment : Fragment() {
 
     private lateinit var viewModel: ExpenseViewModel
+    private lateinit var goalManager: GoalManager
 
     private lateinit var tilAmount: TextInputLayout
     private lateinit var tilDescription: TextInputLayout
@@ -56,11 +59,6 @@ class AddExpenseFragment : Fragment() {
 
     private var selectedDateMillis: Long = System.currentTimeMillis()
 
-    private val categories = listOf(
-        "Food", "Transport", "Entertainment",
-        "Shopping", "Health", "Education", "Other"
-    )
-
     private val cameraLauncher = registerForActivityResult(
         ActivityResultContracts.TakePicture()
     ) { success ->
@@ -80,7 +78,6 @@ class AddExpenseFragment : Fragment() {
         if (uri != null) {
             try {
                 // Only take persistable permission if the intent flags allow it
-                // Many gallery pickers don't support this, so we wrap it to prevent crashes
                 requireContext().contentResolver.takePersistableUriPermission(
                     uri,
                     android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION
@@ -103,7 +100,6 @@ class AddExpenseFragment : Fragment() {
         ActivityResultContracts.RequestPermission()
     ) { granted ->
         if (granted) {
-            // Use view lifecycle check to ensure fragment is still active
             view?.post { launchCamera() }
         } else {
             Toast.makeText(requireContext(), "Camera permission denied", Toast.LENGTH_SHORT).show()
@@ -121,6 +117,7 @@ class AddExpenseFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(requireActivity())[ExpenseViewModel::class.java]
+        goalManager = GoalManager(requireContext())
 
         tilAmount      = view.findViewById(R.id.tilAmount)
         tilDescription = view.findViewById(R.id.tilDescription)
@@ -138,12 +135,8 @@ class AddExpenseFragment : Fragment() {
 
         etDate.setText(formatDate(selectedDateMillis))
 
-        val categoryAdapter = ArrayAdapter(
-            requireContext(),
-            android.R.layout.simple_dropdown_item_1line,
-            categories
-        )
-        actvCategory.setAdapter(categoryAdapter)
+        // Load dynamic categories from GoalManager
+        setupCategorySpinner()
 
         etDate.setOnClickListener { showDatePicker() }
         tilDate.setEndIconOnClickListener { showDatePicker() }
@@ -169,6 +162,22 @@ class AddExpenseFragment : Fragment() {
         }
 
         btnClear.setOnClickListener { clearForm() }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Refresh categories list in case they were modified in ManageCategoriesFragment
+        setupCategorySpinner()
+    }
+
+    private fun setupCategorySpinner() {
+        val categories = goalManager.getCustomCategories()
+        val categoryAdapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_dropdown_item_1line,
+            categories
+        )
+        actvCategory.setAdapter(categoryAdapter)
     }
 
     private fun showDatePicker() {
@@ -261,7 +270,12 @@ class AddExpenseFragment : Fragment() {
             photoPath   = currentPhotoPath
         )
         viewModel.addExpense(expense)
-        Toast.makeText(requireContext(), "Expense saved! ✅", Toast.LENGTH_SHORT).show()
+
+        val achievements = AchievementManager(requireContext())
+        achievements.addXP(25) 
+        Log.d("AddExpenseFragment", "Awarded 25 XP — total: ${achievements.totalXP}")
+
+        Toast.makeText(requireContext(), "Expense saved! +25 XP ✅", Toast.LENGTH_SHORT).show()
         clearForm()
     }
 

@@ -58,6 +58,12 @@ class ExpenseViewModel(application: Application) : AndroidViewModel(application)
     fun getByCategory(category: String) =
         repository.getByCategory(goalManager.currentUser, category)
 
+    fun getByDateRange(startDate: Long, endDate: Long) =
+        repository.getByDateRange(goalManager.currentUser, startDate, endDate)
+
+    fun getByCategoryAndDateRange(category: String, startDate: Long, endDate: Long) =
+        repository.getByCategoryAndDateRange(goalManager.currentUser, category, startDate, endDate)
+
     fun searchExpenses(query: String) =
         repository.searchExpenses(goalManager.currentUser, query)
 }

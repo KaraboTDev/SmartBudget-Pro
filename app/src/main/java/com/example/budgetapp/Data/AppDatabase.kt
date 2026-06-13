@@ -4,14 +4,17 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.budgetapp.bills.BillDao
+import com.example.budgetapp.bills.Bill
 
 
-@Database(entities = [Expense::class, User::class], version = 4, exportSchema = false)
+@Database(entities = [Expense::class, User::class, Bill::class], version = 5, exportSchema = false)
 abstract class AppDatabase: RoomDatabase() {
     //allows you to access the database from anywhere in your app without having to create a new version of it every time.
 
     abstract fun expenseDao(): ExpenseDao
     abstract fun userDao(): UserDao
+    abstract fun billDao(): BillDao
 
 
     companion object{

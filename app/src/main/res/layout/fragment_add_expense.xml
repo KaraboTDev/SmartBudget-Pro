@@ -3,23 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:attr/colorBackground">
+    android:background="@color/surface_bg"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:padding="24dp">
 
         <!-- Header -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add Expense"
-            android:textSize="24sp"
+            android:textSize="28sp"
             android:textStyle="bold"
-            android:textColor="?android:attr/textColorPrimary"
-            android:layout_marginBottom="24dp"/>
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="32dp"/>
 
         <!-- Amount field -->
         <com.google.android.material.textfield.TextInputLayout
@@ -28,14 +29,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Amount (R)"
-            android:layout_marginBottom="16dp"
-            app:startIconDrawable="@drawable/ic_account">
+            android:layout_marginBottom="20dp"
+            app:startIconDrawable="@drawable/ic_account"
+            app:startIconTint="@color/text_secondary"
+            app:boxStrokeColor="@color/ink"
+            app:boxStrokeWidthFocused="1.5dp"
+            app:hintTextColor="@color/text_secondary"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etAmount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
+                android:textColor="@color/text_primary"
                 android:maxLines="1"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -47,29 +57,45 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Description"
-            android:layout_marginBottom="16dp"
-            app:startIconDrawable="@drawable/ic_description">
+            android:layout_marginBottom="20dp"
+            app:startIconDrawable="@drawable/ic_description"
+            app:startIconTint="@color/text_secondary"
+            app:boxStrokeColor="@color/ink"
+            app:boxStrokeWidthFocused="1.5dp"
+            app:hintTextColor="@color/text_secondary"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
                 android:maxLines="1"
                 android:imeOptions="actionDone"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
 
-        <!-- Date picker field — add between description and category -->
+        <!-- Date picker field -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilDate"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Date"
-            android:layout_marginBottom="16dp"
-            app:startIconDrawable="@drawable/ic_calender"
-            app:boxStrokeColor="@color/blue_primary">
+            android:layout_marginBottom="20dp"
+            app:startIconDrawable="@drawable/ic_calendar"
+            app:startIconTint="@color/text_secondary"
+            app:boxStrokeColor="@color/ink"
+            app:boxStrokeWidthFocused="1.5dp"
+            app:hintTextColor="@color/text_secondary"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etDate"
@@ -78,6 +104,7 @@
                 android:focusable="false"
                 android:cursorVisible="false"
                 android:inputType="none"
+                android:textColor="@color/text_primary"
                 android:maxLines="1"
                 android:hint="Tap to pick a date"/>
 
@@ -90,89 +117,114 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Category"
-            android:layout_marginBottom="24dp"
-            app:startIconDrawable="@drawable/ic_category">
+            android:layout_marginBottom="32dp"
+            app:startIconDrawable="@drawable/ic_category"
+            app:startIconTint="@color/text_secondary"
+            app:boxStrokeColor="@color/ink"
+            app:boxStrokeWidthFocused="1.5dp"
+            app:hintTextColor="@color/text_secondary"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp">
 
             <AutoCompleteTextView
                 android:id="@+id/actvCategory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
                 android:focusable="false"
                 android:inputType="none"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Photo section  -->
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Attach Photo (optional)"
             android:textSize="14sp"
-            android:textColor="?android:attr/textColorSecondary"
-            android:layout_marginBottom="8dp"/>
+            android:textStyle="bold"
+            android:textColor="@color/text_secondary"
+            android:layout_marginBottom="12dp"/>
 
-        <!-- Photo preview — hidden until a photo is picked -->
-        <ImageView
-            android:id="@+id/ivPhotoPreview"
+        <!-- Photo preview -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardPhotoPreview"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:scaleType="centerCrop"
+            android:layout_marginBottom="16dp"
             android:visibility="gone"
-            android:layout_marginBottom="8dp"
-            android:background="#F0F0F0"/>
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/border_subtle">
+
+            <ImageView
+                android:id="@+id/ivPhotoPreview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:background="@color/off_white"/>
+        </com.google.android.material.card.MaterialCardView>
 
         <!-- Buttons row -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="24dp">
+            android:layout_marginBottom="32dp">
 
-            <!-- Photo buttons -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnTakePhoto"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="0dp"
-                android:layout_height="48dp"
+                android:layout_height="54dp"
                 android:layout_weight="1"
                 android:text="Camera"
                 android:layout_marginEnd="8dp"
                 app:icon="@drawable/ic_camera"
-                app:cornerRadius="12dp"/>
+                android:textColor="@color/ink"
+                app:iconTint="@color/ink"
+                app:strokeColor="@color/border_strong"
+                app:cornerRadius="14dp"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnPickGallery"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="0dp"
-                android:layout_height="48dp"
+                android:layout_height="54dp"
                 android:layout_weight="1"
                 android:text="Gallery"
                 android:layout_marginStart="8dp"
                 app:icon="@drawable/ic_gallery"
-                app:cornerRadius="12dp"/>
+                android:textColor="@color/ink"
+                app:iconTint="@color/ink"
+                app:strokeColor="@color/border_strong"
+                app:cornerRadius="14dp"/>
 
         </LinearLayout>
 
-        <!-- Save button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSave"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:text="Save Expense"
-            android:textSize="16sp"
+            android:layout_height="52dp"
+            android:text="Save expense"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/ink"
             app:cornerRadius="12dp"/>
 
         <!-- Clear button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnClear"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:text="Clear"
-            android:textSize="16sp"
+            android:text="Clear Form"
+            android:textSize="15sp"
+            android:textColor="@color/text_secondary"
             android:layout_marginTop="12dp"
-            app:cornerRadius="12dp"/>
+            app:cornerRadius="16dp"/>
 
     </LinearLayout>
 

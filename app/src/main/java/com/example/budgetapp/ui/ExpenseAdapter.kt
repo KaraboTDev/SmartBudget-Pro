@@ -45,7 +45,7 @@ class ExpenseAdapter(
         private val tvCategory: TextView = itemView.findViewById(R.id.tvCategory)
         private val tvAmount: TextView = itemView.findViewById(R.id.tvAmount)
         private val tvDate: TextView = itemView.findViewById(R.id.tvDate)
-        private val tvCategoryBadge: TextView = itemView.findViewById(R.id.tvCategoryBadge)
+        val ivCategoryBadge: ImageView = itemView.findViewById(R.id.ivCategoryBadge)
         private val btnDelete: ImageButton = itemView.findViewById(R.id.btnDelete)
         private val ivExpensePhoto: ImageView = itemView.findViewById(R.id.ivExpensePhoto)
 
@@ -54,7 +54,7 @@ class ExpenseAdapter(
             tvCategory.text = expense.category
             tvAmount.text = "R%.2f".format(expense.amount)
             tvDate.text = formatDate(expense.date)
-            tvCategoryBadge.text = getCategoryEmoji(expense.category)
+            ivCategoryBadge.setImageResource(getCategoryIcon(expense.category))
 
             btnDelete.setOnClickListener {
                 onDeleteClick(expense)
@@ -86,15 +86,15 @@ class ExpenseAdapter(
             return sdf.format(Date(timestamp))
         }
 
-        private fun getCategoryEmoji(category: String): String {
+        private fun getCategoryIcon(category: String): Int {
             return when (category.lowercase()) {
-                "food" -> "🍔"
-                "transport" -> "🚗"
-                "entertainment" -> "🎬"
-                "shopping" -> "🛍️"
-                "health" -> "💊"
-                "education" -> "📚"
-                else -> "💰"
+                "food"          -> R.drawable.ic_food
+                "transport"     -> R.drawable.ic_transport
+                "entertainment" -> R.drawable.ic_entertainment
+                "shopping"      -> R.drawable.ic_shopping
+                "health"        -> R.drawable.ic_health
+                "education"     -> R.drawable.ic_education
+                else            -> R.drawable.ic_other
             }
         }
     }

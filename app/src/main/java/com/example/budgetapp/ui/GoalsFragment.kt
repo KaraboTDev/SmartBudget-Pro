@@ -1,5 +1,6 @@
 package com.example.budgetapp.ui
 
+import android.app.DatePickerDialog
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,11 +16,18 @@ import com.example.budgetapp.viewmodel.ExpenseViewModel
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
 class GoalsFragment : Fragment() {
 
     private lateinit var goalManager: GoalManager
     private lateinit var viewModel: ExpenseViewModel
+
+    // Selected target date timestamp — defaults to existing saved value or 0
+    private var selectedTargetDate: Long = 0L
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +47,8 @@ class GoalsFragment : Fragment() {
         val etMaxGoal    = view.findViewById<TextInputEditText>(R.id.etMaxGoal)
         val tilMinGoal   = view.findViewById<TextInputLayout>(R.id.tilMinGoal)
         val tilMaxGoal   = view.findViewById<TextInputLayout>(R.id.tilMaxGoal)
+        val etTargetDate = view.findViewById<TextInputEditText>(R.id.etTargetDate)
+        val tilTargetDate = view.findViewById<TextInputLayout>(R.id.tilTargetDate)
         val btnSaveGoals = view.findViewById<MaterialButton>(R.id.btnSaveGoals)
 
         // Pre-fill saved goals
@@ -46,6 +56,16 @@ class GoalsFragment : Fragment() {
             etMinGoal.setText(goalManager.minimumGoal.toString())
         if (goalManager.maximumGoal > 0)
             etMaxGoal.setText(goalManager.maximumGoal.toString())
+
+        // Pre-fill saved target date
+        selectedTargetDate = goalManager.goalTargetDate
+        if (selectedTargetDate > 0) {
+            etTargetDate.setText(formatDate(selectedTargetDate))
+        }
+
+        // Date picker — only allow future dates
+        etTargetDate.setOnClickListener { showDatePicker(etTargetDate) }
+        tilTargetDate.setEndIconOnClickListener { showDatePicker(etTargetDate) }
 
         // Observe total to show live goal status
         viewModel.totalAmount.observe(viewLifecycleOwner) { total ->
@@ -59,6 +79,7 @@ class GoalsFragment : Fragment() {
 
             tilMinGoal.error = null
             tilMaxGoal.error = null
+            tilTargetDate.error = null
 
             val min = minText.toDoubleOrNull() ?: 0.0
             val max = maxText.toDoubleOrNull() ?: 0.0
@@ -79,12 +100,37 @@ class GoalsFragment : Fragment() {
             if (valid) {
                 goalManager.minimumGoal = min
                 goalManager.maximumGoal = max
+                goalManager.goalTargetDate = selectedTargetDate
+
                 viewModel.totalAmount.value?.let {
                     updateGoalStatus(tvGoalStatus, it ?: 0.0)
                 }
-                Toast.makeText(requireContext(), "Goals saved! ✅", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Goals saved ", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    // ── Date Picker ────────────────────────────────────────────────────────────
+    private fun showDatePicker(etTargetDate: TextInputEditText) {
+        val calendar = Calendar.getInstance()
+        if (selectedTargetDate > 0) calendar.timeInMillis = selectedTargetDate
+
+        DatePickerDialog(
+            requireContext(),
+            { _, year, month, day ->
+                val picked = Calendar.getInstance().apply {
+                    set(year, month, day, 23, 59, 59)
+                }
+                selectedTargetDate = picked.timeInMillis
+                etTargetDate.setText(formatDate(selectedTargetDate))
+            },
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        ).apply {
+            // Block past dates — target must be in the future
+            datePicker.minDate = System.currentTimeMillis()
+        }.show()
     }
 
     private fun updateGoalStatus(tvGoalStatus: TextView, total: Double) {
@@ -97,7 +143,7 @@ class GoalsFragment : Fragment() {
         val max = goalManager.maximumGoal
         when {
             max > 0 && total > max -> {
-                tvGoalStatus.text = " Over maximum! (R%.2f over)".format(total - max)
+                tvGoalStatus.text = "⚠ Over maximum! (R%.2f over)".format(total - max)
                 tvGoalStatus.setTextColor(Color.RED)
             }
             min > 0 && total < min -> {
@@ -106,8 +152,11 @@ class GoalsFragment : Fragment() {
             }
             else -> {
                 tvGoalStatus.text = " Within your goals!"
-                tvGoalStatus.setTextColor(Color.parseColor("#2E7D32"))
+                tvGoalStatus.setTextColor(Color.parseColor("#16A34A"))
             }
         }
     }
+
+    private fun formatDate(timestamp: Long): String =
+        SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(Date(timestamp))
 }

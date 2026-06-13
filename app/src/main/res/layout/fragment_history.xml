@@ -35,6 +35,48 @@
 
     </LinearLayout>
 
+    <!-- Category Filter Chips -->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:paddingHorizontal="16dp"
+        android:paddingBottom="8dp"
+        android:clipToPadding="false">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupCategories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:singleSelection="true"
+            app:selectionRequired="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipAll"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="All"
+                android:checked="true"
+                app:chipBackgroundColor="@color/blue_primary"
+                android:textColor="@color/white"/>
+
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+    <!-- Date Range Picker -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnDateRange"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:text="Select Date Range"
+        android:gravity="start|center_vertical"
+        app:icon="@drawable/ic_history"
+        app:iconTint="@color/blue_primary"
+        android:textColor="@color/blue_primary"/>
+
     <!-- Search bar -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilSearch"

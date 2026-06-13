@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="?android:attr/colorBackground">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Bill Reminder"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/text_primary"
+        android:layout_marginBottom="20dp"/>
+
+    <!-- Bill name -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilBillName"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Bill name (e.g. Netflix, Rent)"
+        android:layout_marginBottom="12dp"
+        app:boxStrokeColor="@color/blue_primary">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etBillName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:imeOptions="actionNext"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Amount -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilBillAmount"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Amount (R)"
+        android:layout_marginBottom="12dp"
+        app:boxStrokeColor="@color/blue_primary">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etBillAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:maxLines="1"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Due date -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilBillDate"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Due date"
+        android:layout_marginBottom="12dp"
+        app:startIconDrawable="@drawable/ic_calendar"
+        app:boxStrokeColor="@color/blue_primary">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etBillDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:inputType="none"
+            android:maxLines="1"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Recurring toggle -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Recurring bill"
+            android:textSize="15sp"
+            android:textColor="@color/text_primary"/>
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchRecurring"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:trackTint="@color/blue_primary"/>
+
+    </LinearLayout>
+
+    <!-- Recurring type dropdown (hidden until toggle on) -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilRecurringType"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Repeat every"
+        android:layout_marginBottom="12dp"
+        android:visibility="gone"
+        app:boxStrokeColor="@color/blue_primary">
+
+        <AutoCompleteTextView
+            android:id="@+id/actvRecurringType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:inputType="none"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Notes -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilBillNotes"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Notes (optional)"
+        android:layout_marginBottom="20dp"
+        app:boxStrokeColor="@color/blue_primary">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etBillNotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="2"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Save button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSaveBill"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:text="Set Reminder 🔔"
+        android:backgroundTint="@color/blue_primary"
+        app:cornerRadius="12dp"/>
+
+</LinearLayout>

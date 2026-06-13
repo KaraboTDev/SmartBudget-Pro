@@ -1,39 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="180dp"
-    android:background="@color/blue_primary"
+    android:layout_height="160dp"
+    android:background="@color/ink"
     android:orientation="vertical"
     android:gravity="bottom"
-    android:padding="24dp">
+    android:padding="20dp">
 
-    <!-- Avatar circle -->
-    <TextView
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:text="👤"
-        android:textSize="32sp"
-        android:gravity="center"
-        android:background="@color/blue_dark"
+    <View
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/circle_avatar_bg"
         android:layout_marginBottom="12dp"/>
 
-    <!-- Username -->
     <TextView
         android:id="@+id/tvDrawerUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Username"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="@color/white"/>
+        android:textSize="16sp"
+        android:textColor="@color/card_white"/>
 
-    <!-- Subtitle -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SmartBudget Pro"
-        android:textSize="13sp"
-        android:textColor="#B3FFFFFF"
+        android:text="SmartBudget-Pro"
+        android:textSize="12sp"
+        android:textColor="#94A3B8"
         android:layout_marginTop="2dp"/>
 
 </LinearLayout>

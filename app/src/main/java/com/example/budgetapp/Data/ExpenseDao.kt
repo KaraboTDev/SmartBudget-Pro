@@ -24,6 +24,14 @@ interface ExpenseDao {
     @Query("SELECT * FROM expenses WHERE username = :username AND category = :category ORDER BY date DESC")
     fun getExpensesByCategory(username: String, category: String): LiveData<List<Expense>>
 
+    // Date range filter for this user
+    @Query("SELECT * FROM expenses WHERE username = :username AND date BETWEEN :startDate AND :endDate ORDER BY date DESC")
+    fun getExpensesByDateRange(username: String, startDate: Long, endDate: Long): LiveData<List<Expense>>
+
+    // Category AND Date Range filter
+    @Query("SELECT * FROM expenses WHERE username = :username AND category = :category AND date BETWEEN :startDate AND :endDate ORDER BY date DESC")
+    fun getExpensesByCategoryAndDateRange(username: String, category: String, startDate: Long, endDate: Long): LiveData<List<Expense>>
+
     // Search for this user only
     @Query("""
         SELECT * FROM expenses 

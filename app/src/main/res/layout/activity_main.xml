@@ -6,46 +6,49 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- ─── Main content ─────────────────────────────── -->
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/off_white">
+        android:background="@color/surface_bg">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <!-- Blue toolbar with hamburger -->
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/blue_primary"
-                app:titleTextColor="@color/white"
-                app:navigationIconTint="@color/white"/>
+                android:background="@color/ink"
+                app:titleTextColor="@color/card_white"
+                app:navigationIconTint="@color/card_white"/>
 
-            <!-- Fragment container -->
             <FrameLayout
                 android:id="@+id/fragment_container"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"/>
 
-            <!-- Bottom navigation — 3 tabs now -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/border_subtle"/>
+
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottom_navigation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
-                app:itemIconTint="@color/blue_primary"
-                app:itemTextColor="@color/blue_primary"
-                app:menu="@menu/bottom_nav_menu"/>
+                android:background="@color/card_white"
+                app:itemIconTint="@color/bottom_nav_color"
+                app:itemTextColor="@color/bottom_nav_color"
+                app:itemTextAppearanceActive="@style/BottomNavTextActive"
+                app:itemTextAppearanceInactive="@style/BottomNavTextInactive"
+                app:menu="@menu/bottom_nav_menu"
+                app:elevation="0dp"/>
 
         </LinearLayout>
 
-        <!-- Green FAB above bottom nav -->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
@@ -54,24 +57,24 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="72dp"
             android:contentDescription="Add Expense"
-            android:src="@android:drawable/ic_input_add"
-            app:backgroundTint="@color/green_primary"
-            app:tint="@color/white"
-            app:elevation="6dp"/>
+            android:src="@drawable/ic_add"
+            app:backgroundTint="@color/ink"
+            app:tint="@color/card_white"
+            app:elevation="2dp"
+            app:rippleColor="@color/border_strong"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    <!-- ─── Navigation Drawer (slides in from left) ──── -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/white"
+        android:background="@color/card_white"
         app:headerLayout="@layout/drawer_header"
         app:menu="@menu/drawer_menu"
-        app:itemIconTint="@color/blue_primary"
+        app:itemIconTint="@color/text_primary"
         app:itemTextColor="@color/text_primary"
-        app:itemRippleColor="@color/green_light"/>
+        app:itemRippleColor="@color/border_subtle"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>
