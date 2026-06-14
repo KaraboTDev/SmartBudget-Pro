@@ -217,8 +217,8 @@ Launch → Splash (2s) → Login
 | Name | Role |
 |---|---|
 | [Karabo Tshivhase](https://github.com/KaraboTDev) | Lead Developer |
-| [Group Member 2 Name](https://github.com/ThandiMDev) | UI Developer |
-| [Group Member 3 Name](https://github.com/Peggy201) | UX Developer |
+| [Ompha Mudau](https://github.com/ThandiMDev) | UI Developer |
+| [Mulweli Mudau](https://github.com/Peggy201) | UX Developer |
 
 
 
