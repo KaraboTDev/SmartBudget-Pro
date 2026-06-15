@@ -220,6 +220,19 @@ Launch → Splash (2s) → Login
 | [Ompha Mudau](https://github.com/ThandiMDev) | UI Developer |
 | [Mulweli Mudau](https://github.com/Peggy201) | UX Developer |
 
+## 🎬 Demo Video
+
+[![Watch the demo](https://img.shields.io/badge/Watch-Demo%20Video-red?logo=youtube)](https://youtube.com/shorts/ZayTo5rWpTQ?si=DTNAJemCaGEGVYx7)
+
+> Click the badge above to watch the full app demonstration video.
+
+---
+
+## 📦 Download APK
+
+[![Download APK](https://img.shields.io/badge/Download-APK%20v2.0.0-green?logo=android)](https://github.com/KaraboTDev/SmartBudget-Pro/releases/download/v2.0.0/app-debug.apk)
+
+> Minimum Android 7.0 (API 24) required. Install by enabling **"Install from unknown sources"** in your device settings.
 
 
 ---
