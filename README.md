@@ -235,6 +235,22 @@ Launch → Splash (2s) → Login
 > Minimum Android 7.0 (API 24) required. Install by enabling **"Install from unknown sources"** in your device settings.
 
 
+## 📁 Repository
+
+[![GitHub](https://img.shields.io/badge/GitHub-SmartBudget--Pro-black?logo=github)](https://github.com/KaraboTDev/SmartBudget-Pro)
+
+| Detail | Info |
+|---|---|
+| 🔗 Repo URL | https://github.com/KaraboTDev/SmartBudget-Pro |
+| 🌿 Branch | main |
+| 📝 Commits | See commit history for full development timeline |
+| ⚙️ CI/CD | GitHub Actions — auto builds on every push to main |
+
+> Clone the repo:
+> ```
+> git clone https://github.com/KaraboTDev/SmartBudget-Pro.git
+> ```
+
 ---
 
 ## 📄 License
